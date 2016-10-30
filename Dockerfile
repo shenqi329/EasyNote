@@ -18,8 +18,6 @@ RUN go build main.go
 
 EXPOSE 80
 
-#CMD ["/usr/bin/supervisord"]
-
-CMD service mongod start && ./main
+CMD ["/usr/bin/supervisord"]
 
 
