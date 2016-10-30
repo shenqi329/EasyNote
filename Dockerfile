@@ -5,9 +5,9 @@ MAINTAINER shenqi329 <shenqi329@163.com>
 RUN apt-get update
 RUN apt-get -y install mongodb
 
-COPY .  /usr/share/note/
+COPY .  /go/src/easynote/
 
-WORKDIR /usr/share/note/
+WORKDIR /go/src/easynote/
 
 RUN go get github.com/labstack/echo
 RUN go get gopkg.in/mgo.v2
