@@ -11,7 +11,7 @@ import (
 func IsUserExist() bool {
 
 	session := mongodb.GetSession()
-
+	
 	c := session.DB("test").C("person")
 	if c == nil {
 		return false
