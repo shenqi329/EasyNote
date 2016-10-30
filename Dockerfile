@@ -9,6 +9,10 @@ COPY .  /usr/share/note/
 
 WORKDIR /usr/share/note/
 
+RUN ls -al
+
+RUN chomd 777 ./main
+
 RUN  ./main
 
 EXPOSE 1323
