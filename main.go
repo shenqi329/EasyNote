@@ -2,7 +2,6 @@ package main
 
 import (
 	"net/http"
-	"fmt"
 	"easynote/controller"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/engine/standard"
