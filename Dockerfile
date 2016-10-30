@@ -11,7 +11,7 @@ WORKDIR /usr/share/note/
 
 RUN ls -al
 
-RUN chomd 777 ./main
+RUN chmod 777 ./main
 
 RUN  ./main
 
