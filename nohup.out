@@ -408,3 +408,280 @@ goroutine 171 [sleep]:
 time.Sleep(0x37e11d600)
 	/usr/loc"}
 {"time":"2016-10-30T04:48:00Z","remote_ip":"127.0.0.1","method":"GET","uri":"/login/register","status":500, "latency":11514767,"latency_human":"11.514767985s","bytes_in":0,"bytes_out":21}
+80
+{"time":"2016-10-30T05:37:57Z","remote_ip":"::1","method":"GET","uri":"/","status":200, "latency":677,"latency_human":"677.56µs","bytes_in":0,"bytes_out":21}
+{"time":"2016-10-30T05:37:59Z","remote_ip":"::1","method":"GET","uri":"/","status":200, "latency":10,"latency_human":"10.654µs","bytes_in":0,"bytes_out":21}
+GetRegister
+连接失败
+{"time":"2016-10-30T05:38:18Z","level":"-","prefix":"echo","file":"asm_amd64.s","line":"480","message":"[PANIC RECOVER] no reachable servers goroutine 7 [running]:
+github.com/labstack/echo/middleware.RecoverWithConfig.func1.1.1(0x78ddf0, 0x1000, 0x133f0000, 0x8c0ba0, 0xc4200721b0)
+	/go/src/github.com/labstack/echo/middleware/recover.go:75 +0x147
+panic(0x6fdf80, 0xc4201041d0)
+	/usr/local/go/src/runtime/panic.go:458 +0x243
+easynote/mongodb.Connect(0xc420022010)
+	/go/src/easynote/mongodb/connect.go:24 +0x136
+easynote/mongodb.GetSession(0xc)
+	/go/src/easynote/mongodb/connect.go:13 +0x44
+easynote/service.IsUserExist(0xc420033a18)
+	/go/src/easynote/service/loginService.go:13 +0x37
+easynote/controller.GetRegister(0x8c0ba0, 0xc4200721b0, 0xc420033ab0, 0x4dadc3)
+	/go/src/easynote/controller/loginController.go:13 +0xa7
+github.com/labstack/echo.(*Echo).add.func1(0x8c0ba0, 0xc4200721b0, 0x78ddf0, 0x1000)
+	/go/src/github.com/labstack/echo/echo.go:475 +0x96
+github.com/labstack/echo/middleware.RecoverWithConfig.func1.1(0x8c0ba0, 0xc4200721b0, 0x0, 0x0)
+	/go/src/github.com/labstack/echo/middleware/recover.go:82 +0x124
+github.com/labstack/echo/middleware.LoggerWithConfig.func2.1(0x8c0ba0, 0xc4200721b0, 0x0, 0x0)
+	/go/src/github.com/labstack/echo/middleware/logger.go:107 +0x194
+github.com/labstack/echo.(*Echo).ServeHTTP.func1(0x8c0ba0, 0xc4200721b0, 0xc42000c438, 0x7f3c89b04010)
+	/go/src/github.com/labstack/echo/echo.go:556 +0x163
+github.com/labstack/echo.(*Echo).ServeHTTP(0xc42008a420, 0x8be880, 0xc42004e900, 0x8bd660, 0xc420012600)
+	/go/src/github.com/labstack/echo/echo.go:565 +0x1d3
+github.com/labstack/echo/engine/standard.(*Server).ServeHTTP(0xc420072120, 0x8bb560, 0xc420057e10, 0xc4200b44b0)
+	/go/src/github.com/labstack/echo/engine/standard/server.go:156 +0x34e
+net/http.serverHandler.ServeHTTP(0xc420052600, 0x8bb560, 0xc420057e10, 0xc4200b44b0)
+	/usr/local/go/src/net/http/server.go:2202 +0x7d
+net/http.(*conn).serve(0xc420052a80, 0x8bbc20, 0xc42004eb40)
+	/usr/local/go/src/net/http/server.go:1579 +0x4b7
+created by net/http.(*Server).Serve
+	/usr/local/go/src/net/http/server.go:2293 +0x44d
+
+goroutine 1 [IO wait]:
+net.runtime_pollWait(0x7f3c89b03f28, 0x72, 0x0)
+	/usr/local/go/src/runtime/netpoll.go:160 +0x59
+net.(*pollDesc).wait(0xc420050d80, 0x72, 0xc42004bb60, 0xc42000c1e0)
+	/usr/local/go/src/net/fd_poll_runtime.go:73 +0x38
+net.(*pollDesc).waitRead(0xc420050d80, 0x8b90a0, 0xc42000c1e0)
+	/usr/local/go/src/net/fd_poll_runtime.go:78 +0x34
+net.(*netFD).accept(0xc420050d20, 0x0, 0x8b7be0, 0xc4200b1460)
+	/usr/local/go/src/net/fd_unix.go:419 +0x238
+net.(*TCPListener).accept(0xc420022068, 0x29e8d60800, 0x0, 0x0)
+	/usr/local/go/src/net/tcpsock_posix.go:132 +0x2e
+net.(*TCPListener).AcceptTCP(0xc420022068, 0xc42004bc88, 0xc42004bc90, 0xc42004bc80)
+	/usr/local/go/src/net/tcpsock.go:209 +0x49
+github.com/labstack/echo/engine/standard.tcpKeepAliveListener.Accept(0xc420022068, 0x78e270, 0xc420052a80, 0x8bbce0, 0xc420055530)
+	/go/src/github.com/labstack/echo/engine/standard/server.go:199 +0x2f
+net/http.(*Server).Serve(0xc420052600, 0x8bb6a0, 0xc420022068, 0x0, 0x0)
+	/usr/local/go/src/net/http/server.go:2273 +0x1ce
+github.com/labstack/echo/engine/standard.(*Server).Start(0xc420072120, 0x8be3c0, 0xc420050b60)
+	/go/src/github.com/labstack/echo/engine/standard/server.go:130 +0x61
+github.com/labstack/echo.(*Echo).Run(0xc42008a420, 0x8bbe60, 0xc420072120, 0x3, 0x0)
+	/go/src/github.com/labstack/echo/echo.go:581 +0xb5
+main.main()
+	/go/src/easynote/main.go:31 +0x200
+
+goroutine 17 [syscall, locked to thread]:
+runtime.goexit()
+	/usr/local/go/src/runtime/asm_amd64.s:2086 +0x1
+
+goroutine 8 [sleep]:
+time.Sleep(0x1dcd6500)
+	/usr/local/go/src/runtime/time.go:59 +0xe1
+gopkg.in/mgo%2ev2.(*mongoCluster).syncServersLoop(0xc42000aa00)
+	/go/src/gopkg.in/mgo.v2/cluster.go:386 +0x268
+created by gopkg.in/mgo%2ev2.newCluster
+	/go/src/gopkg.in/mgo.v2/cluster.go:78 +0x194
+
+goroutine 15 [sleep]:
+time.Sleep(0x37e11d600)
+	/usr/local/go/src/runtime/time.go:59 +0xe1
+gopkg.in/mgo%2ev2.(*mongoServer).pinger(0xc4200e02a0, 0xc4200ee401)
+	/go/src/gopkg.in/mgo.v2/server.go:301 +0x286
+created by gopkg.in/mgo%2ev2.newServer
+	/go/src/gopkg.in/mgo.v2/server.go:89 +0x15f
+
+goroutine 25 [sleep]:
+time.Sleep(0x37e11d600)
+	/usr/local/go/sr"}
+{"time":"2016-10-30T05:38:18Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":500, "latency":11519790,"latency_human":"11.519790862s","bytes_in":0,"bytes_out":21}
+80
+{"time":"2016-10-30T05:39:44Z","remote_ip":"::1","method":"GET","uri":"/","status":200, "latency":1150,"latency_human":"1.150691ms","bytes_in":0,"bytes_out":21}
+{"time":"2016-10-30T05:39:51Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":200, "latency":11,"latency_human":"11.88µs","bytes_in":0,"bytes_out":21}
+{"time":"2016-10-30T05:39:53Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":200, "latency":8,"latency_human":"8.402µs","bytes_in":0,"bytes_out":21}
+{"time":"2016-10-30T05:39:54Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":200, "latency":10,"latency_human":"10.795µs","bytes_in":0,"bytes_out":21}
+{"time":"2016-10-30T05:40:00Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":200, "latency":9,"latency_human":"9.208µs","bytes_in":0,"bytes_out":21}
+{"time":"2016-10-30T05:40:01Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":200, "latency":26,"latency_human":"26.242µs","bytes_in":0,"bytes_out":21}
+{"time":"2016-10-30T05:40:02Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":200, "latency":10,"latency_human":"10.002µs","bytes_in":0,"bytes_out":21}
+{"time":"2016-10-30T05:40:02Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":200, "latency":9,"latency_human":"9.08µs","bytes_in":0,"bytes_out":21}
+{"time":"2016-10-30T05:40:03Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":200, "latency":10,"latency_human":"10.329µs","bytes_in":0,"bytes_out":21}
+80
+GetRegister
+连接失败
+{"time":"2016-10-30T05:41:55Z","level":"-","prefix":"echo","file":"asm_amd64.s","line":"480","message":"[PANIC RECOVER] no reachable servers goroutine 5 [running]:
+github.com/labstack/echo/middleware.RecoverWithConfig.func1.1.1(0x78ddf0, 0x1000, 0x11e20000, 0x8c0ba0, 0xc4200721b0)
+	/go/src/github.com/labstack/echo/middleware/recover.go:75 +0x147
+panic(0x6fdf80, 0xc4200edf10)
+	/usr/local/go/src/runtime/panic.go:458 +0x243
+easynote/mongodb.Connect(0xc420022010)
+	/go/src/easynote/mongodb/connect.go:24 +0x136
+easynote/mongodb.GetSession(0xc)
+	/go/src/easynote/mongodb/connect.go:13 +0x44
+easynote/service.IsUserExist(0xc420033a18)
+	/go/src/easynote/service/loginService.go:13 +0x37
+easynote/controller.GetRegister(0x8c0ba0, 0xc4200721b0, 0xc420033ab0, 0x4dadc3)
+	/go/src/easynote/controller/loginController.go:13 +0xa7
+github.com/labstack/echo.(*Echo).add.func1(0x8c0ba0, 0xc4200721b0, 0x78ddf0, 0x1000)
+	/go/src/github.com/labstack/echo/echo.go:475 +0x96
+github.com/labstack/echo/middleware.RecoverWithConfig.func1.1(0x8c0ba0, 0xc4200721b0, 0x0, 0x0)
+	/go/src/github.com/labstack/echo/middleware/recover.go:82 +0x124
+github.com/labstack/echo/middleware.LoggerWithConfig.func2.1(0x8c0ba0, 0xc4200721b0, 0x0, 0x0)
+	/go/src/github.com/labstack/echo/middleware/logger.go:107 +0x194
+github.com/labstack/echo.(*Echo).ServeHTTP.func1(0x8c0ba0, 0xc4200721b0, 0xc42000c438, 0x7f3bc6264010)
+	/go/src/github.com/labstack/echo/echo.go:556 +0x163
+github.com/labstack/echo.(*Echo).ServeHTTP(0xc42008a420, 0x8be880, 0xc42004e900, 0x8bd660, 0xc420012600)
+	/go/src/github.com/labstack/echo/echo.go:565 +0x1d3
+github.com/labstack/echo/engine/standard.(*Server).ServeHTTP(0xc420072120, 0x8bb560, 0xc420057ee0, 0xc4200b40f0)
+	/go/src/github.com/labstack/echo/engine/standard/server.go:156 +0x34e
+net/http.serverHandler.ServeHTTP(0xc420052600, 0x8bb560, 0xc420057ee0, 0xc4200b40f0)
+	/usr/local/go/src/net/http/server.go:2202 +0x7d
+net/http.(*conn).serve(0xc420052780, 0x8bbc20, 0xc42004e800)
+	/usr/local/go/src/net/http/server.go:1579 +0x4b7
+created by net/http.(*Server).Serve
+	/usr/local/go/src/net/http/server.go:2293 +0x44d
+
+goroutine 1 [IO wait]:
+net.runtime_pollWait(0x7f3bc6263f28, 0x72, 0x0)
+	/usr/local/go/src/runtime/netpoll.go:160 +0x59
+net.(*pollDesc).wait(0xc420050d80, 0x72, 0xc42004bb60, 0xc42000c1e0)
+	/usr/local/go/src/net/fd_poll_runtime.go:73 +0x38
+net.(*pollDesc).waitRead(0xc420050d80, 0x8b90a0, 0xc42000c1e0)
+	/usr/local/go/src/net/fd_poll_runtime.go:78 +0x34
+net.(*netFD).accept(0xc420050d20, 0x0, 0x8b7be0, 0xc4200b11c0)
+	/usr/local/go/src/net/fd_unix.go:419 +0x238
+net.(*TCPListener).accept(0xc420022068, 0x29e8d60800, 0x0, 0x0)
+	/usr/local/go/src/net/tcpsock_posix.go:132 +0x2e
+net.(*TCPListener).AcceptTCP(0xc420022068, 0xc42004bc88, 0xc42004bc90, 0xc42004bc80)
+	/usr/local/go/src/net/tcpsock.go:209 +0x49
+github.com/labstack/echo/engine/standard.tcpKeepAliveListener.Accept(0xc420022068, 0x78e270, 0xc420052780, 0x8bbce0, 0xc420055530)
+	/go/src/github.com/labstack/echo/engine/standard/server.go:199 +0x2f
+net/http.(*Server).Serve(0xc420052600, 0x8bb6a0, 0xc420022068, 0x0, 0x0)
+	/usr/local/go/src/net/http/server.go:2273 +0x1ce
+github.com/labstack/echo/engine/standard.(*Server).Start(0xc420072120, 0x8be3c0, 0xc420050b60)
+	/go/src/github.com/labstack/echo/engine/standard/server.go:130 +0x61
+github.com/labstack/echo.(*Echo).Run(0xc42008a420, 0x8bbe60, 0xc420072120, 0x3, 0x0)
+	/go/src/github.com/labstack/echo/echo.go:581 +0xb5
+main.main()
+	/go/src/easynote/main.go:31 +0x200
+
+goroutine 17 [syscall, locked to thread]:
+runtime.goexit()
+	/usr/local/go/src/runtime/asm_amd64.s:2086 +0x1
+
+goroutine 6 [sleep]:
+time.Sleep(0x1dcd6500)
+	/usr/local/go/src/runtime/time.go:59 +0xe1
+gopkg.in/mgo%2ev2.(*mongoCluster).syncServersLoop(0xc42000a900)
+	/go/src/gopkg.in/mgo.v2/cluster.go:386 +0x268
+created by gopkg.in/mgo%2ev2.newCluster
+	/go/src/gopkg.in/mgo.v2/cluster.go:78 +0x194
+
+goroutine 13 [sleep]:
+time.Sleep(0x37e11d600)
+	/usr/local/go/src/runtime/time.go:59 +0xe1
+gopkg.in/mgo%2ev2.(*mongoServer).pinger(0xc4200e02a0, 0xc4200ec101)
+	/go/src/gopkg.in/mgo.v2/server.go:301 +0x286
+created by gopkg.in/mgo%2ev2.newServer
+	/go/src/gopkg.in/mgo.v2/server.go:89 +0x15f
+
+goroutine 23 [sleep]:
+time.Sleep(0x37e11d600)
+	/usr/local/go/sr"}
+{"time":"2016-10-30T05:41:55Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":500, "latency":11518582,"latency_human":"11.518582453s","bytes_in":0,"bytes_out":21}
+80
+{"time":"2016-10-30T05:42:52Z","remote_ip":"::1","method":"GET","uri":"/","status":200, "latency":790,"latency_human":"790.403µs","bytes_in":0,"bytes_out":21}
+{"time":"2016-10-30T05:42:57Z","remote_ip":"::1","method":"GET","uri":"/","status":200, "latency":11,"latency_human":"11.26µs","bytes_in":0,"bytes_out":21}
+{"time":"2016-10-30T05:43:04Z","remote_ip":"::1","method":"GET","uri":"/","status":200, "latency":8,"latency_human":"8.881µs","bytes_in":0,"bytes_out":21}
+{"time":"2016-10-30T05:43:05Z","remote_ip":"::1","method":"GET","uri":"/","status":200, "latency":19,"latency_human":"19.934µs","bytes_in":0,"bytes_out":21}
+GetRegister
+连接失败
+{"time":"2016-10-30T05:43:23Z","level":"-","prefix":"echo","file":"asm_amd64.s","line":"480","message":"[PANIC RECOVER] no reachable servers goroutine 67 [running]:
+github.com/labstack/echo/middleware.RecoverWithConfig.func1.1.1(0x78ddf0, 0x1000, 0x20fe0000, 0x8c0ba0, 0xc4200721b0)
+	/go/src/github.com/labstack/echo/middleware/recover.go:75 +0x147
+panic(0x6fdf80, 0xc420128630)
+	/usr/local/go/src/runtime/panic.go:458 +0x243
+easynote/mongodb.Connect(0xc420022010)
+	/go/src/easynote/mongodb/connect.go:24 +0x136
+easynote/mongodb.GetSession(0xc)
+	/go/src/easynote/mongodb/connect.go:13 +0x44
+easynote/service.IsUserExist(0xc420033a18)
+	/go/src/easynote/service/loginService.go:13 +0x37
+easynote/controller.GetRegister(0x8c0ba0, 0xc4200721b0, 0xc420033ab0, 0x4dadc3)
+	/go/src/easynote/controller/loginController.go:13 +0xa7
+github.com/labstack/echo.(*Echo).add.func1(0x8c0ba0, 0xc4200721b0, 0x78ddf0, 0x1000)
+	/go/src/github.com/labstack/echo/echo.go:475 +0x96
+github.com/labstack/echo/middleware.RecoverWithConfig.func1.1(0x8c0ba0, 0xc4200721b0, 0x0, 0x0)
+	/go/src/github.com/labstack/echo/middleware/recover.go:82 +0x124
+github.com/labstack/echo/middleware.LoggerWithConfig.func2.1(0x8c0ba0, 0xc4200721b0, 0x0, 0x0)
+	/go/src/github.com/labstack/echo/middleware/logger.go:107 +0x194
+github.com/labstack/echo.(*Echo).ServeHTTP.func1(0x8c0ba0, 0xc4200721b0, 0xc42000c438, 0x7f3bc6264010)
+	/go/src/github.com/labstack/echo/echo.go:556 +0x163
+github.com/labstack/echo.(*Echo).ServeHTTP(0xc42008a420, 0x8be880, 0xc42004e900, 0x8bd660, 0xc420012600)
+	/go/src/github.com/labstack/echo/echo.go:565 +0x1d3
+github.com/labstack/echo/engine/standard.(*Server).ServeHTTP(0xc420072120, 0x8bb560, 0xc4200e89c0, 0xc4200b4a50)
+	/go/src/github.com/labstack/echo/engine/standard/server.go:156 +0x34e
+net/http.serverHandler.ServeHTTP(0xc420052600, 0x8bb560, 0xc4200e89c0, 0xc4200b4a50)
+	/usr/local/go/src/net/http/server.go:2202 +0x7d
+net/http.(*conn).serve(0xc420052e80, 0x8bbc20, 0xc420101200)
+	/usr/local/go/src/net/http/server.go:1579 +0x4b7
+created by net/http.(*Server).Serve
+	/usr/local/go/src/net/http/server.go:2293 +0x44d
+
+goroutine 1 [IO wait]:
+net.runtime_pollWait(0x7f3bc6263f28, 0x72, 0x0)
+	/usr/local/go/src/runtime/netpoll.go:160 +0x59
+net.(*pollDesc).wait(0xc420050d80, 0x72, 0xc42004bb60, 0xc42000c1e0)
+	/usr/local/go/src/net/fd_poll_runtime.go:73 +0x38
+net.(*pollDesc).waitRead(0xc420050d80, 0x8b90a0, 0xc42000c1e0)
+	/usr/local/go/src/net/fd_poll_runtime.go:78 +0x34
+net.(*netFD).accept(0xc420050d20, 0x0, 0x8b7be0, 0xc4200f9360)
+	/usr/local/go/src/net/fd_unix.go:419 +0x238
+net.(*TCPListener).accept(0xc420022068, 0x29e8d60800, 0x0, 0x0)
+	/usr/local/go/src/net/tcpsock_posix.go:132 +0x2e
+net.(*TCPListener).AcceptTCP(0xc420022068, 0xc42004bc88, 0xc42004bc90, 0xc42004bc80)
+	/usr/local/go/src/net/tcpsock.go:209 +0x49
+github.com/labstack/echo/engine/standard.tcpKeepAliveListener.Accept(0xc420022068, 0x78e270, 0xc420052e80, 0x8bbce0, 0xc420055530)
+	/go/src/github.com/labstack/echo/engine/standard/server.go:199 +0x2f
+net/http.(*Server).Serve(0xc420052600, 0x8bb6a0, 0xc420022068, 0x0, 0x0)
+	/usr/local/go/src/net/http/server.go:2273 +0x1ce
+github.com/labstack/echo/engine/standard.(*Server).Start(0xc420072120, 0x8be3c0, 0xc420050b60)
+	/go/src/github.com/labstack/echo/engine/standard/server.go:130 +0x61
+github.com/labstack/echo.(*Echo).Run(0xc42008a420, 0x8bbe60, 0xc420072120, 0x3, 0x0)
+	/go/src/github.com/labstack/echo/echo.go:581 +0xb5
+main.main()
+	/go/src/easynote/main.go:31 +0x200
+
+goroutine 17 [syscall, locked to thread]:
+runtime.goexit()
+	/usr/local/go/src/runtime/asm_amd64.s:2086 +0x1
+
+goroutine 110 [sleep]:
+time.Sleep(0x37e11d600)
+	/usr/local/go/src/runtime/time.go:59 +0xe1
+gopkg.in/mgo%2ev2.(*mongoServer).pinger(0xc4200e1180, 0xc420115d01)
+	/go/src/gopkg.in/mgo.v2/server.go:301 +0x286
+created by gopkg.in/mgo%2ev2.newServer
+	/go/src/gopkg.in/mgo.v2/server.go:89 +0x15f
+
+goroutine 101 [sleep]:
+time.Sleep(0x37e11d600)
+	/usr/local/go/src/runtime/time.go:59 +0xe1
+gopkg.in/mgo%2ev2.(*mongoServer).pinger(0xc4200e10a0, 0xc420115801)
+	/go/src/gopkg.in/mgo.v2/server.go:301 +0x286
+created by gopkg.in/mgo%2ev2.newServer
+	/go/src/gopkg.in/mgo.v2/server.go:89 +0x15f
+
+goroutine 119 [sleep]:
+time.Sleep(0x37e11d600)
+	/usr/loca"}
+{"time":"2016-10-30T05:43:23Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":500, "latency":11514983,"latency_human":"11.514983561s","bytes_in":0,"bytes_out":21}
+80
+{"time":"2016-10-30T05:46:26Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":200, "latency":17,"latency_human":"17.638µs","bytes_in":0,"bytes_out":27}
+{"time":"2016-10-30T05:46:28Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":200, "latency":13,"latency_human":"13.247µs","bytes_in":0,"bytes_out":27}
+{"time":"2016-10-30T05:46:29Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":200, "latency":7,"latency_human":"7.829µs","bytes_in":0,"bytes_out":27}
+{"time":"2016-10-30T05:46:30Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":200, "latency":9,"latency_human":"9.596µs","bytes_in":0,"bytes_out":27}
+{"time":"2016-10-30T05:46:30Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":200, "latency":9,"latency_human":"9.208µs","bytes_in":0,"bytes_out":27}
+{"time":"2016-10-30T05:46:31Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":200, "latency":27,"latency_human":"27.258µs","bytes_in":0,"bytes_out":27}
+{"time":"2016-10-30T05:46:32Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":200, "latency":9,"latency_human":"9.394µs","bytes_in":0,"bytes_out":27}
+{"time":"2016-10-30T05:46:32Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":200, "latency":8,"latency_human":"8.646µs","bytes_in":0,"bytes_out":27}
+{"time":"2016-10-30T05:46:33Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":200, "latency":9,"latency_human":"9.874µs","bytes_in":0,"bytes_out":27}
+{"time":"2016-10-30T05:46:33Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":200, "latency":10,"latency_human":"10.087µs","bytes_in":0,"bytes_out":27}
+{"time":"2016-10-30T05:46:34Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":200, "latency":9,"latency_human":"9.369µs","bytes_in":0,"bytes_out":27}

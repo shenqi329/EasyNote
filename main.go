@@ -1,6 +1,7 @@
 package main
 
 import (
+	"net/http"
 	"fmt"
 	"easynote/controller"
 	"github.com/labstack/echo"
@@ -8,16 +9,24 @@ import (
 	"github.com/labstack/echo/middleware"
 )
 
+var (
+	users = []string{"Joe", "Veer", "Zion"}
+)
+
+func getUsers(c echo.Context) error {
+	return c.JSON(http.StatusOK, users)
+}
+
+
 func main() {
 
 	e := echo.New()
 
 	e.Use(middleware.Logger())
-	e.Use(middleware.Recover())
 
 	e.GET("/login/register", controller.GetRegister)
-
-	fmt.Println("80");
+	e.GET("/",getUsers)
+	fmt.Println("80")
 	e.Run(standard.New(":80"))
 }
 
