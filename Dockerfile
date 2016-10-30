@@ -2,7 +2,7 @@ FROM golang
 
 MAINTAINER shenqi329 <shenqi329@163.com>
 
-RUN apt-get install update
+RUN apt-get update
 RUN apt-get -y install mongodb
 
 COPY .  /usr/share/note/
