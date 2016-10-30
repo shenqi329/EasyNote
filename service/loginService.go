@@ -5,26 +5,49 @@ import (
 	"easynote/mongodb"
 	"fmt"
 	"gopkg.in/mgo.v2/bson"
-	"log"
+	//"strings"
+	//"log"
 )
 
-func IsUserExist() bool {
+func IsUserExist(name string) bool {
 
-	return false;
+	session := mongodb.GetSession()
+	fmt.Println("name = %s",name)
+	c := session.DB("test").C("t_user")
+	if c == nil {
+		fmt.Println("get t_user fail");
+		return false
+	}
+	fmt.Println("get t_user success");
+
+	result := bean.UserBean{}
+	err := c.Find(bson.M{"name": name}).One(&result)
+	if err != nil {
+		return false
+	}
+	fmt.Println("query name = %s,password = %s",result.Name,result.Password);
+	return true
+}
+
+func UserRegister(user *bean.UserBean) bool{
 	session := mongodb.GetSession()
 
-	c := session.DB("test").C("person")
+	c := session.DB("test").C("t_user")
 	if c == nil {
+		fmt.Println("get t_user fail");
 		return false
 	}
 
-	result := bean.User{}
-	err := c.Find(bson.M{"Name": "123"}).One(&result)
+	if IsUserExist(user.Name) {
+		fmt.Println("Insert fail,user already exist:" + user.Name);
+		return false;
+	}
+
+	err := c.Insert(user)
+
 	if err != nil {
-		log.Fatal(err)
-		return false
+		fmt.Println("Insert fail:" + user.Name);
+		return false;
 	}
-	fmt.Println("Name", result.Name)
-
-	return true
+	return true;
 }

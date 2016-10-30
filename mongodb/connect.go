@@ -20,10 +20,11 @@ func Connect() *mgo.Session {
 	session, err := mgo.Dial("mongodb://localhost:27017")
 
 	if err != nil {
-		fmt.Println("连接失败")
+		fmt.Println("mongodb:连接失败")
 		panic(err)
 		return nil
 	}
+	fmt.Println("mongodb:连接成功")
 
 	session.SetMode(mgo.Monotonic, true)
 
