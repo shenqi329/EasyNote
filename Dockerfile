@@ -14,7 +14,7 @@ RUN go get gopkg.in/mgo.v2
 RUN go get github.com/dgrijalva/jwt-go
 RUN go build main.go
 
-EXPOSE 1323
+EXPOSE 80
 
 CMD ./main
 
