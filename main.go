@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"easynote/controller"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/engine/standard"
@@ -16,6 +17,7 @@ func main() {
 
 	e.GET("/login/register", controller.GetRegister)
 
+	fmt.Println("1323");
 	e.Run(standard.New(":1323"))
 }
 

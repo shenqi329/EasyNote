@@ -13,8 +13,9 @@ RUN go get github.com/labstack/echo
 RUN go get gopkg.in/mgo.v2
 RUN go get github.com/dgrijalva/jwt-go
 RUN go build main.go
-RUN  ./main
 
 EXPOSE 1323
+
+CMD ./main
 
 
