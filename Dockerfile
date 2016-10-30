@@ -1,9 +1,10 @@
-#FROM golang
-FROM daocloud.io/shenqi329/golang:latest
+FROM shenqi329/base_env
+#FROM daocloud.io/shenqi329/golang:latest
 
 MAINTAINER shenqi329 <shenqi329@163.com>
 
 #RUN apt-get update
+#RUN apt-get install libpcrecpp0
 #RUN apt-get -y install mongodb supervisor
 
 COPY .  /go/src/easynote/
