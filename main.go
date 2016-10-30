@@ -26,7 +26,6 @@ func main() {
 
 	e.GET("/login/register", controller.GetRegister)
 	e.GET("/",getUsers)
-	fmt.Println("80")
 	e.Run(standard.New(":80"))
 }
 
