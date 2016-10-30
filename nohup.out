@@ -685,3 +685,91 @@ time.Sleep(0x37e11d600)
 {"time":"2016-10-30T05:46:33Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":200, "latency":9,"latency_human":"9.874µs","bytes_in":0,"bytes_out":27}
 {"time":"2016-10-30T05:46:33Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":200, "latency":10,"latency_human":"10.087µs","bytes_in":0,"bytes_out":27}
 {"time":"2016-10-30T05:46:34Z","remote_ip":"::1","method":"GET","uri":"/login/register","status":200, "latency":9,"latency_human":"9.369µs","bytes_in":0,"bytes_out":27}
+mongod --help for help and startup options
+Sun Oct 30 14:17:38.877 [initandlisten] MongoDB starting : pid=46 port=27017 dbpath=/data/db/ 64-bit host=a4217833cb2d
+Sun Oct 30 14:17:38.877 [initandlisten] db version v2.4.10
+Sun Oct 30 14:17:38.878 [initandlisten] git version: nogitversion
+Sun Oct 30 14:17:38.878 [initandlisten] build info: Linux julia 3.16.0-4-amd64 #1 SMP Debian 3.16.7-ckt2-1 (2014-12-08) x86_64 BOOST_LIB_VERSION=1_55
+Sun Oct 30 14:17:38.878 [initandlisten] allocator: tcmalloc
+Sun Oct 30 14:17:38.878 [initandlisten] options: {}
+Sun Oct 30 14:17:38.879 [initandlisten] journal dir=/data/db/journal
+Sun Oct 30 14:17:38.879 [initandlisten] recover : no journal files present, no recovery needed
+Sun Oct 30 14:17:38.905 [initandlisten] waiting for connections on port 27017
+Sun Oct 30 14:17:38.905 [websvr] admin web console waiting for connections on port 28017
+Sun Oct 30 14:18:25.733 [initandlisten] connection accepted from 127.0.0.1:58596 #1 (1 connection now open)
+Sun Oct 30 14:20:12.473 [conn1] end connection 127.0.0.1:58596 (0 connections now open)
+Sun Oct 30 14:20:19.984 [signalProcessingThread] got signal 15 (Terminated), will terminate after current cmd ends
+Sun Oct 30 14:20:19.985 [signalProcessingThread] now exiting
+Sun Oct 30 14:20:19.985 dbexit: 
+Sun Oct 30 14:20:19.985 [signalProcessingThread] shutdown: going to close listening sockets...
+Sun Oct 30 14:20:19.985 [signalProcessingThread] closing listening socket: 9
+Sun Oct 30 14:20:19.985 [signalProcessingThread] closing listening socket: 10
+Sun Oct 30 14:20:19.985 [signalProcessingThread] closing listening socket: 11
+Sun Oct 30 14:20:19.985 [signalProcessingThread] removing socket file: /tmp/mongodb-27017.sock
+Sun Oct 30 14:20:19.986 [signalProcessingThread] shutdown: going to flush diaglog...
+Sun Oct 30 14:20:19.986 [signalProcessingThread] shutdown: going to close sockets...
+Sun Oct 30 14:20:19.986 [signalProcessingThread] shutdown: waiting for fs preallocator...
+Sun Oct 30 14:20:19.986 [signalProcessingThread] shutdown: lock for final commit...
+Sun Oct 30 14:20:19.986 [signalProcessingThread] shutdown: final commit...
+Sun Oct 30 14:20:19.986 [signalProcessingThread] shutdown: closing all files...
+Sun Oct 30 14:20:19.986 [signalProcessingThread] closeAllFiles() finished
+Sun Oct 30 14:20:19.986 [signalProcessingThread] journalCleanup...
+Sun Oct 30 14:20:19.986 [signalProcessingThread] removeJournalFiles
+Sun Oct 30 14:20:19.987 [signalProcessingThread] shutdown: removing fs lock...
+Sun Oct 30 14:20:19.987 dbexit: really exiting now
+mongod --help for help and startup options
+Sun Oct 30 14:20:28.177 [initandlisten] MongoDB starting : pid=64 port=27017 dbpath=/data/db/ 64-bit host=a4217833cb2d
+Sun Oct 30 14:20:28.177 [initandlisten] db version v2.4.10
+Sun Oct 30 14:20:28.177 [initandlisten] git version: nogitversion
+Sun Oct 30 14:20:28.178 [initandlisten] build info: Linux julia 3.16.0-4-amd64 #1 SMP Debian 3.16.7-ckt2-1 (2014-12-08) x86_64 BOOST_LIB_VERSION=1_55
+Sun Oct 30 14:20:28.178 [initandlisten] allocator: tcmalloc
+Sun Oct 30 14:20:28.178 [initandlisten] options: {}
+Sun Oct 30 14:20:28.179 [initandlisten] journal dir=/data/db/journal
+Sun Oct 30 14:20:28.179 [initandlisten] recover : no journal files present, no recovery needed
+Sun Oct 30 14:20:28.202 [initandlisten] waiting for connections on port 27017
+Sun Oct 30 14:20:28.203 [websvr] admin web console waiting for connections on port 28017
+Sun Oct 30 14:20:36.621 [signalProcessingThread] got signal 15 (Terminated), will terminate after current cmd ends
+Sun Oct 30 14:20:36.623 [signalProcessingThread] now exiting
+Sun Oct 30 14:20:36.624 dbexit: 
+Sun Oct 30 14:20:36.626 [signalProcessingThread] shutdown: going to close listening sockets...
+Sun Oct 30 14:20:36.626 [signalProcessingThread] closing listening socket: 9
+Sun Oct 30 14:20:36.627 [signalProcessingThread] closing listening socket: 10
+Sun Oct 30 14:20:36.627 [signalProcessingThread] closing listening socket: 11
+Sun Oct 30 14:20:36.628 [signalProcessingThread] removing socket file: /tmp/mongodb-27017.sock
+Sun Oct 30 14:20:36.628 [signalProcessingThread] shutdown: going to flush diaglog...
+Sun Oct 30 14:20:36.628 [signalProcessingThread] shutdown: going to close sockets...
+Sun Oct 30 14:20:36.629 [signalProcessingThread] shutdown: waiting for fs preallocator...
+Sun Oct 30 14:20:36.629 [signalProcessingThread] shutdown: lock for final commit...
+Sun Oct 30 14:20:36.629 [signalProcessingThread] shutdown: final commit...
+Sun Oct 30 14:20:36.631 [signalProcessingThread] shutdown: closing all files...
+Sun Oct 30 14:20:36.632 [signalProcessingThread] closeAllFiles() finished
+Sun Oct 30 14:20:36.632 [signalProcessingThread] journalCleanup...
+Sun Oct 30 14:20:36.632 [signalProcessingThread] removeJournalFiles
+Sun Oct 30 14:20:36.635 [signalProcessingThread] shutdown: removing fs lock...
+Sun Oct 30 14:20:36.635 dbexit: really exiting now
+Sun Oct 30 15:12:08.038 [initandlisten] MongoDB starting : pid=35 port=27017 dbpath=/go/src/db/ 64-bit host=53c7ad82f4e9
+Sun Oct 30 15:12:08.038 [initandlisten] db version v2.4.10
+Sun Oct 30 15:12:08.038 [initandlisten] git version: nogitversion
+Sun Oct 30 15:12:08.038 [initandlisten] build info: Linux julia 3.16.0-4-amd64 #1 SMP Debian 3.16.7-ckt2-1 (2014-12-08) x86_64 BOOST_LIB_VERSION=1_55
+Sun Oct 30 15:12:08.038 [initandlisten] allocator: tcmalloc
+Sun Oct 30 15:12:08.039 [initandlisten] options: { config: "./mongodb.conf", dbpath: "/go/src/db/" }
+Sun Oct 30 15:12:08.040 [initandlisten] journal dir=/go/src/db/journal
+Sun Oct 30 15:12:08.040 [initandlisten] recover : no journal files present, no recovery needed
+Sun Oct 30 15:12:08.087 [initandlisten] waiting for connections on port 27017
+Sun Oct 30 15:12:08.087 [websvr] admin web console waiting for connections on port 28017
+Sun Oct 30 15:14:02.183 [initandlisten] connection accepted from 127.0.0.1:60630 #1 (1 connection now open)
+Sun Oct 30 15:14:17.184 [initandlisten] connection accepted from 127.0.0.1:60632 #2 (2 connections now open)
+Sun Oct 30 15:14:27.709 [conn2] end connection 127.0.0.1:60632 (1 connection now open)
+Sun Oct 30 15:14:27.710 [conn1] end connection 127.0.0.1:60630 (1 connection now open)
+Sun Oct 30 15:20:41.581 [initandlisten] MongoDB starting : pid=29 port=27017 dbpath=/go/src/db/ 64-bit host=53c7ad82f4e9
+Sun Oct 30 15:20:41.582 [initandlisten] db version v2.4.10
+Sun Oct 30 15:20:41.582 [initandlisten] git version: nogitversion
+Sun Oct 30 15:20:41.582 [initandlisten] build info: Linux julia 3.16.0-4-amd64 #1 SMP Debian 3.16.7-ckt2-1 (2014-12-08) x86_64 BOOST_LIB_VERSION=1_55
+Sun Oct 30 15:20:41.582 [initandlisten] allocator: tcmalloc
+Sun Oct 30 15:20:41.582 [initandlisten] options: { config: "mongodb.conf", dbpath: "/go/src/db/" }
+Sun Oct 30 15:20:41.583 [initandlisten] journal dir=/go/src/db/journal
+Sun Oct 30 15:20:41.583 [initandlisten] recover : no journal files present, no recovery needed
+Sun Oct 30 15:20:41.619 [initandlisten] waiting for connections on port 27017
+Sun Oct 30 15:20:41.619 [websvr] admin web console waiting for connections on port 28017
+Sun Oct 30 15:21:06.422 [initandlisten] connection accepted from 127.0.0.1:60634 #1 (1 connection now open)
+Sun Oct 30 15:21:21.423 [initandlisten] connection accepted from 127.0.0.1:60636 #2 (2 connections now open)
