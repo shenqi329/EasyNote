@@ -20,6 +20,6 @@ EXPOSE 80
 
 #CMD ["/usr/bin/supervisord"]
 
-CMD ["service mongod start && ./main"]
+CMD service mongod start && ./main
 
 
