@@ -8,7 +8,7 @@ import (
 	"log"
 )
 
-func IsUserExist(userName *string) bool {
+func IsUserExist() bool {
 
 	session := mongodb.GetSession()
 
@@ -18,7 +18,7 @@ func IsUserExist(userName *string) bool {
 	}
 
 	result := bean.User{}
-	err := c.Find(bson.M{"Name": userName}).One(&result)
+	err := c.Find(bson.M{"Name": "123"}).One(&result)
 	if err != nil {
 		log.Fatal(err)
 		return false

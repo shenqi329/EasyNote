@@ -14,7 +14,7 @@ func main() {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
-	e.GET("/login/register", login.GetRegister)
+	e.GET("/login/register", controller.GetRegister)
 
 	e.Run(standard.New(":1323"))
 }

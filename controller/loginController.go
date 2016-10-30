@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"easynote/bean"
 	"easynote/service"
 	"github.com/labstack/echo"
 	"net/http"
@@ -9,7 +10,7 @@ import (
 func GetRegister(c echo.Context) error {
 
 	service.IsUserExist()
-	test := User{Name: "liujunshi", Password: "123456"}
+	test := bean.User{Name: "liujunshi", Password: "123456"}
 	return c.JSON(http.StatusOK, test)
 
 }

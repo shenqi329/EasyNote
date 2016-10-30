@@ -9,10 +9,10 @@ COPY .  /usr/share/note/
 
 WORKDIR /usr/share/note/
 
-RUN ls -al
-
-RUN chmod 777 ./main
-
+RUN go get github.com/labstack/echo
+RUN go get gopkg.in/mgo.v2
+RUN go get github.com/dgrijalva/jwt-go
+RUN go build main.go
 RUN  ./main
 
 EXPOSE 1323
