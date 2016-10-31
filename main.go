@@ -1,12 +1,12 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
 	"easynote/controller"
+	"fmt"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/engine/standard"
 	"github.com/labstack/echo/middleware"
+	"net/http"
 )
 
 var (
@@ -14,9 +14,8 @@ var (
 )
 
 func getUsers(c echo.Context) error {
-	return c.JSON(http.StatusOK, "a message from liujunshi")
+	return c.JSON(http.StatusOK, "a message from server")
 }
-
 
 func main() {
 
@@ -25,11 +24,11 @@ func main() {
 	e.Use(middleware.Logger())
 
 	e.GET("/login/user/:name", controller.IsUserExist)
-	e.POST("/login/register",controller.UserRegister)
+	e.POST("/login/register", controller.UserRegister)
 
-	e.GET("/",getUsers)
+	e.GET("/", getUsers)
 
-	fmt.Println("server run on port:80");
+	fmt.Println("server run on port:80")
 	e.Run(standard.New(":80"))
 }
 

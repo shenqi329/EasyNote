@@ -1,8 +1,7 @@
-FROM shenqi329/note
+FROM shenqi329/base_env
 
 MAINTAINER shenqi329 <shenqi329@163.com>
 
-COPY .  /go/src/easynote/
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 WORKDIR /go/src/easynote/
