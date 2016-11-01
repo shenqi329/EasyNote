@@ -7,10 +7,9 @@ type (
 	}
 )
 
-
 type (
 	UserExistBean struct {
-		Name     string
-		Exist 	 bool
+		Name  string
+		Exist bool
 	}
 )

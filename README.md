@@ -24,3 +24,4 @@ mount -t vboxsf easynote_data /go/src/easynote_data -o rw,uid=1000,gid=50,mode=0
 
 ###开启mongodb
 #### nohup  mongod --config ./mongodb.conf &
+

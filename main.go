@@ -9,11 +9,7 @@ import (
 	"net/http"
 )
 
-var (
-	users = []string{"Joe", "Veer", "Zion"}
-)
-
-func getUsers(c echo.Context) error {
+func defaultServer(c echo.Context) error {
 	return c.JSON(http.StatusOK, "a message from server")
 }
 
@@ -23,10 +19,10 @@ func main() {
 
 	e.Use(middleware.Logger())
 
-	e.GET("/login/user/:name", controller.IsUserExist)
-	e.POST("/login/register", controller.UserRegister)
+	e.GET("/user/:name", controller.IsUserExist)
+	e.POST("/user/register", controller.UserRegister)
 
-	e.GET("/", getUsers)
+	e.GET("/", defaultServer)
 
 	fmt.Println("server run on port:80")
 	e.Run(standard.New(":80"))
