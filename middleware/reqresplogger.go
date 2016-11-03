@@ -14,6 +14,7 @@ func ReqRespLogger() echo.MiddlewareFunc {
 			if err = next(c); err != nil {
 				c.Error(err)
 			}
+			fmt.Println("ReqRespLogger")
 			return err
 		}
 	}

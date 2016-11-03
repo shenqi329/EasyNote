@@ -2,7 +2,7 @@ package main
 
 import (
 	"easynote/controller"
-	easynotemiddleware "easynote/middleware"
+	//easynotemiddleware "easynote/middleware"
 	"fmt"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/engine/standard"
@@ -19,7 +19,7 @@ func main() {
 	e := echo.New()
 
 	e.Use(echomiddleware.Logger())
-	e.Use(easynotemiddleware.ReqRespLogger())
+	//e.Use(easynotemiddleware.ReqRespLogger())
 
 	e.GET("/user/:name", controller.IsUserExist)
 	e.POST("/user/register", controller.UserRegister)
