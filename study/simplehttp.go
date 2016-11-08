@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"io"
 	"net"
 	"os"
 )
@@ -15,7 +16,8 @@ func main() {
 	service := os.Args[1]
 	conn, err := net.Dial("tcp", service)
 	checkError(err)
-	_, err = conn.Write([]byte("HEAD / HTTP/1.0\r\n\r\n"))
+	//_, err = conn.Write([]byte("GET /user/liujunshi HTTP/1.1\r\nHost:192.168.99.100\r\nConnection: close\r\n\r\n"))
+	_, err = conn.Write([]byte("HEAD HTTP/1.1\r\n\r\n"))
 	checkError(err)
 	result, err := readFully(conn)
 	checkError(err)
@@ -38,9 +40,9 @@ func readFully(conn net.Conn) ([]byte, error) {
 		n, err := conn.Read(buf[0:])
 		result.Write(buf[0:n])
 		if err != nil {
-			// if err == io.EOF {
-			// 	break
-			// }
+			if err == io.EOF {
+				break
+			}
 			return nil, err
 		}
 	}

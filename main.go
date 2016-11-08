@@ -3,15 +3,16 @@ package main
 import (
 	"easynote/controller"
 	//easynotemiddleware "easynote/middleware"
-	"fmt"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/engine/standard"
 	echomiddleware "github.com/labstack/echo/middleware"
+	glog "github.com/labstack/gommon/log"
 	"net/http"
 )
 
 func defaultServer(c echo.Context) error {
-	return c.JSON(http.StatusOK, "a message from server")
+	//return c.Redirect(http.StatusTemporaryRedirect, "http://www.baidu.com/")
+	return c.JSON(http.StatusOK, `{"Name":"Alice","Body":"Hello","Time":1294706395881547000}`)
 }
 
 func main() {
@@ -19,6 +20,7 @@ func main() {
 	e := echo.New()
 
 	e.Use(echomiddleware.Logger())
+
 	//e.Use(easynotemiddleware.ReqRespLogger())
 
 	e.GET("/user/:name", controller.IsUserExist)
@@ -26,7 +28,10 @@ func main() {
 
 	e.GET("/", defaultServer)
 
-	fmt.Println("server run on port:80")
+	e.SetDebug(true)
+	e.SetLogLevel(glog.DEBUG)
+
+	//fmt.Println("server run on port:80")
 	e.Run(standard.New(":80"))
 }
 

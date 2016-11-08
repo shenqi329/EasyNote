@@ -26,7 +26,17 @@ mount -t vboxsf easynote_data /go/src/easynote_data -o rw,uid=1000,gid=50,mode=0
 #### nohup  mongod --config ./mongodb.conf &
 
 
+sudo mkdir -p /go/src/ && sudo mount -t vboxsf src /go/src/ && cd /go/src/easynote
+docker start -i easynote
+sh deploy_develop.sh
 
 # 技术需求
 ##go语言编程
+
+
+113.785048,22.787336 
+113.78755,22.785333
+
+/develop/go/src/golang.org/x # git clone https://github.com/golang/crypto.git
+
 

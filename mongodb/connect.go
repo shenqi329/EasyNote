@@ -24,7 +24,7 @@ func Connect() *mgo.Session {
 		//panic(err)
 		return nil
 	}
-	fmt.Println("mongodb:连接成功")
+	//fmt.Println("mongodb:连接成功")
 
 	session.SetMode(mgo.Monotonic, true)
 
