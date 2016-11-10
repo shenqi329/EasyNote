@@ -15,14 +15,14 @@ type (
 		ID       bson.ObjectId `bson:"_id,omitempty"`
 		Name     string        `json:"name" xml:"name" form:"name"`
 		Password string        `json:"password" xml:"password" form:"password"`
-		NickName string
-		Gender   string
+		NickName string        `json:"nickName"`
+		Gender   string        `json:"gender"`
 	}
 )
 
 type (
 	UserExistBean struct {
-		Name  string
-		Exist bool
+		Name  string `json:"name"`
+		Exist bool   `json:"exist"`
 	}
 )

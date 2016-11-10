@@ -38,5 +38,6 @@ sh deploy_develop.sh
 113.78755,22.785333
 
 /develop/go/src/golang.org/x # git clone https://github.com/golang/crypto.git
+git clone https://github.com/golang/text.git
 
 

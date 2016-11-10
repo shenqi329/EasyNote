@@ -2,17 +2,20 @@ package main
 
 import (
 	"easynote/controller"
+	"fmt"
 	//easynotemiddleware "easynote/middleware"
+	"github.com/fsnotify/fsnotify"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/engine/standard"
 	echomiddleware "github.com/labstack/echo/middleware"
 	glog "github.com/labstack/gommon/log"
+	"github.com/spf13/viper"
 	"net/http"
 )
 
 func defaultServer(c echo.Context) error {
 	//return c.Redirect(http.StatusTemporaryRedirect, "http://www.baidu.com/")
-	return c.JSON(http.StatusOK, `{"Name":"Alice","Body":"Hello","Time":1294706395881547000}`)
+	return c.JSON(http.StatusOK, `{"name":"Alice","body":"Hello","time":1294706395881547000}`)
 }
 
 func main() {
@@ -20,8 +23,23 @@ func main() {
 	e := echo.New()
 
 	e.Use(echomiddleware.Logger())
-
 	//e.Use(easynotemiddleware.ReqRespLogger())
+
+	viper.SetConfigType("json")
+	viper.SetConfigFile("./viperconf.json")
+
+	err := viper.ReadInConfig() // Find and read the config file
+	if err != nil {             // Handle errors reading the config file
+		panic(fmt.Errorf("Fatal error config file: %s \n", err))
+	}
+	viper.WatchConfig()
+
+	viper.OnConfigChange(func(e fsnotify.Event) {
+		fmt.Println("Config file change:", e.Name)
+	})
+
+	fmt.Println("name:", viper.GetString("name"))
+	fmt.Println("password:", viper.GetString("password"))
 
 	e.GET("/user/:name", controller.IsUserExist)
 	e.POST("/user/register", controller.UserRegister)
@@ -33,8 +51,10 @@ func main() {
 
 	//fmt.Println("server run on port:80")
 	e.Run(standard.New(":80"))
+	e.Run(standard.WithTLS(":80", "./study/https/mac/server.crt", "./study/https/mac/server.key"))
 }
 
+//https://192.168.99.100/user/1
 // var (
 // 	users = []string{"Joe", "Veer", "Zion"}
 // )
