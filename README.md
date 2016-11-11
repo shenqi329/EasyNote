@@ -25,8 +25,11 @@ mount -t vboxsf easynote_data /go/src/easynote_data -o rw,uid=1000,gid=50,mode=0
 ###开启mongodb
 #### nohup  mongod --config ./mongodb.conf &
 
+sudo mkdir -p /go/src/ &&  sudo mount -t vboxsf shareName /go/src/ && cd /go/src/easynote
 
+docker start -i easynote
 
 # 技术需求
 ##go语言编程
 
+http://itindex.net/detail/48346-sso-%E7%99%BB%E5%BD%95
