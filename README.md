@@ -30,10 +30,3 @@ mount -t vboxsf easynote_data /go/src/easynote_data -o rw,uid=1000,gid=50,mode=0
 # 技术需求
 ##go语言编程
 
-
-
-###windows
-sudo mkdir -p /go/src && sudo mount -t vboxsf src /go/src && cd /go/src/ && docker start -i easynote
-sh deploy_develop.sh
-docker start -i easynote
-docker run -it -p 80:80 -v /go/src:/go/src --name easynote shenqi329/easynote /bin/bash
