@@ -33,6 +33,7 @@ sh deploy_develop.sh
 # 技术需求
 ##go语言编程
 
+http://itindex.net/detail/48346-sso-%E7%99%BB%E5%BD%95
 
 113.785048,22.787336 
 113.78755,22.785333
