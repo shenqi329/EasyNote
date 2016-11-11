@@ -2,15 +2,18 @@ package main
 
 import (
 	"easynote/controller"
+	//"errors"
 	//easynotemiddleware "easynote/middleware"
-	"fmt"
+	//"fmt"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/engine/standard"
 	echomiddleware "github.com/labstack/echo/middleware"
+	glog "github.com/labstack/gommon/log"
 	"net/http"
 )
 
 func defaultServer(c echo.Context) error {
+	//return errors.New("api did not exist!")
 	return c.JSON(http.StatusOK, "a message from server")
 }
 
@@ -23,10 +26,12 @@ func main() {
 
 	e.GET("/user/:name", controller.IsUserExist)
 	e.POST("/user/register", controller.UserRegister)
-
 	e.GET("/", defaultServer)
 
-	fmt.Println("server run on port:80")
+	e.SetDebug(true)
+	e.SetLogLevel(glog.DEBUG)
+
+	e.Run(standard.WithTLS(":80", "./study/https/home/ca.crt", "./study/https/home/ca_decrypted.key"))
 	e.Run(standard.New(":80"))
 }
 
