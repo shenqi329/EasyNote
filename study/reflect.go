@@ -16,12 +16,12 @@ func (b *Bird) Fly() {
 
 func main() {
 	sparrow := &Bird{"Sparrow", 3}
-	s := reflect.ValueOf(sparrow).Elem()
+	s := reflect.Indirect(reflect.ValueOf(sparrow))
 
 	typeOfT := s.Type()
 
 	for i := 0; i < s.NumField(); i++ {
 		f := s.Field(i)
-		fmt.Printf("%d:%s %s = %v\n", i, typeOfT.Field(i).Name, f.Type(), f.Interface())
+		fmt.Printf("%d : %s %s = %v\n", i, typeOfT.Field(i).Name, f.Type(), f.Interface())
 	}
 }
