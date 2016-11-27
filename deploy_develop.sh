@@ -9,4 +9,8 @@ fi
 
 
 
-#docker run -it -p 80:80 -p 27017:27017 -p 8081:8081 -p 8082:8082 -p 8888:22 -v /go/src:/go/src --name easynote shenqi329/easynote /bin/bash
+#docker run -it -p 80:80 -v /go/src:/go/src --name easynote golang /bin/bash
+
+docker run -it -v /go/src:/go/src --name connect2 golang /bin/bash
+
+docker run -it -v /go/src:/go/src --name connect3 golang /bin/bash
