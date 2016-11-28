@@ -2,7 +2,6 @@ use db_sso;
 
 
 drop table `t_user`;
-
 CREATE TABLE `t_user` (
   `t_user_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `t_user_username` varchar(100) NOT NULL COMMENT '用户名',
@@ -25,29 +24,40 @@ CREATE TABLE `t_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 drop table `t_token`;
-
 CREATE TABLE `t_token` (
-  `t_token_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `t_token_user_id` bigint(20) NOT NULL COMMENT '用户id',
-  `t_token_token` varchar(200) NOT NULL COMMENT '授权码',
-  `t_token_device_id` varchar(36) NOT NULL  COMMENT '设备id',
-  `t_token_app_id` varchar(36) NOT NULL  COMMENT '应用id',
-  `t_token_platform` varchar(10) NOT NULL  COMMENT '平台',
-  `t_token_create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '生成时间',
-  `t_token_expired_time` datetime NOT NULL  DEFAULT CURRENT_TIMESTAMP COMMENT '修改日期',
-  PRIMARY KEY (`t_token_id`)
+  `t_token_id` 				bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `t_token_user_id` 		bigint(20) NOT NULL COMMENT '用户id',
+  `t_token_token` 			varchar(200) NOT NULL COMMENT '授权码',
+  `t_token_device_id` 		varchar(36) NOT NULL  COMMENT '设备id',
+  `t_token_app_id` 			varchar(36) NOT NULL  COMMENT '应用id',
+  `t_token_platform` 		varchar(10) NOT NULL  COMMENT '平台',
+  `t_token_create_time` 	datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '生成时间',
+  `t_token_expired_time`	datetime NOT NULL  DEFAULT CURRENT_TIMESTAMP COMMENT '修改日期',
+  PRIMARY KEY (`t_token_id`),
+  foreign key (`t_token_user_id`) references t_user(t_user_id) on delete cascade on update cascade
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 drop table `t_email_verify`;
-
 CREATE TABLE `t_email_verify` (
-  `t_email_verify_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `t_email_verify_username`	varchar(100) NOT NULL COMMENT '被验证的用户名',
-  `t_email_verify_email`	varchar(100) NOT NULL COMMENT '被验证的邮箱',
-  `t_email_verify_code`	varchar(10) NOT NULL COMMENT '验证码',
+  `t_email_verify_id` 			bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `t_email_verify_username`		varchar(100) NOT NULL COMMENT '被验证的用户名',
+  `t_email_verify_email`		varchar(100) NOT NULL COMMENT '被验证的邮箱',
+  `t_email_verify_code`			varchar(10) NOT NULL COMMENT '验证码',
   `t_email_verify_expired_time`	datetime NOT NULL  DEFAULT CURRENT_TIMESTAMP COMMENT '过期时间',
   PRIMARY KEY (`t_email_verify_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='验证码表';
+
+drop table `t_verify`;
+create table `t_verify`(
+  `t_verify_id` 			bigint(20) 	NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `t_verify_verify_type`  	int8 NOT NULL COMMENT '验证类型 1:注册邮箱 2:注册电话 3:修改邮箱 4:修改电话号码',
+  `t_verify_verify_id`		varchar(100) NOT NULL COMMENT '被验证的系统的id,比如邮箱号,电话号码',
+  `t_verify_code`			varchar(10) NOT NULL COMMENT '验证码',
+  `t_verify_expired_time`	datetime NOT NULL  DEFAULT CURRENT_TIMESTAMP COMMENT '过期时间',
+  PRIMARY KEY (`t_verify_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='验证码表';
+
+drop table t_email_verify;
 
 
 
