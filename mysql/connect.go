@@ -36,7 +36,7 @@ func GetXormEngine() *xorm.Engine {
 
 func connect() *gorm.DB {
 
-	db, err := gorm.Open("mysql", "user_connect:user_connect@tcp(172.17.0.2:3306)/db_sso?charset=utf8")
+	db, err := gorm.Open("mysql", "user_connect:user_connect@tcp(localhost:3306)/db_sso?charset=utf8")
 
 	if err != nil {
 		log.Println(err.Error())
