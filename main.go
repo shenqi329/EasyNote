@@ -2,12 +2,16 @@ package main
 
 import (
 	"easynote/controller"
+	easynoteGrpc "easynote/grpc"
 	"fmt"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/engine/standard"
 	echomiddleware "github.com/labstack/echo/middleware"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
+	grpcMessage "im/grpc/message"
+	"log"
+	"net"
 	"net/http"
 )
 
@@ -22,7 +26,7 @@ func grpcServerRegister(tcpAddr string) {
 	}
 	s := grpc.NewServer()
 
-	pb.RegisterMessageServer(s, &imserverGrpc.Message{})
+	grpcMessage.RegisterMessageServer(s, &easynoteGrpc.Message{})
 	// Register reflection service on gRPC server.
 	reflection.Register(s)
 	if err := s.Serve(lis); err != nil {

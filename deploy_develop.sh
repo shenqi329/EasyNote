@@ -14,3 +14,5 @@ fi
 docker run -it -v /go/src:/go/src --name connect2 golang /bin/bash
 
 docker run -it -v /go/src:/go/src --name connect3 golang /bin/bash
+
+docker run -it -v /go/src:/go/src --name connect5 connect /bin/bash
