@@ -2,11 +2,12 @@ package main
 
 import (
 	"easynote/controller"
-	//easynotemiddleware "easynote/middleware"
 	"fmt"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/engine/standard"
 	echomiddleware "github.com/labstack/echo/middleware"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 	"net/http"
 )
 
@@ -14,7 +15,24 @@ func defaultServer(c echo.Context) error {
 	return c.JSON(http.StatusOK, "a message from server")
 }
 
+func grpcServerRegister(tcpAddr string) {
+	lis, err := net.Listen("tcp", tcpAddr)
+	if err != nil {
+		log.Fatalf("failed to listen: %v", err)
+	}
+	s := grpc.NewServer()
+
+	pb.RegisterMessageServer(s, &imserverGrpc.Message{})
+	// Register reflection service on gRPC server.
+	reflection.Register(s)
+	if err := s.Serve(lis); err != nil {
+		log.Fatalf("failed to serve: %v", err)
+	}
+}
+
 func main() {
+
+	go grpcServerRegister("localhost:6006")
 
 	e := echo.New()
 
