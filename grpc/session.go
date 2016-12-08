@@ -7,13 +7,13 @@ import (
 	"log"
 )
 
-type Message struct {
+type Sesion struct {
 	ClientConn *grpc.ClientConn
 }
 
-func (s *Message) CreateMessage(context.Context, *grpcPb.CreateMessageRequest) (*grpcPb.CreateMessageReply, error) {
+func (s *Sesion) CreateSession(context.Context, *grpcPb.CreateSessionRequest) (*grpcPb.CreateSessionReply, error) {
 
-	log.Println("CreateMessage")
+	log.Println("creteSession")
 
 	return nil, nil
 }

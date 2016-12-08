@@ -9,7 +9,8 @@ import (
 	echomiddleware "github.com/labstack/echo/middleware"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
-	grpcMessage "im/grpc/message"
+	grpcPb "im/grpc/pb"
+	protocolClient "im/protocol/client"
 	"log"
 	"net"
 	"net/http"
@@ -19,14 +20,31 @@ func defaultServer(c echo.Context) error {
 	return c.JSON(http.StatusOK, "a message from server")
 }
 
+func grpcConnImServer(tcpAddr string) *grpc.ClientConn {
+	//Set up a connection to the server.
+	conn, err := grpc.Dial(tcpAddr, grpc.WithInsecure())
+	if err != nil {
+		log.Fatalf("did not connect: %v", err)
+	}
+	return conn
+}
+
 func grpcServerRegister(tcpAddr string) {
+
+	clientConn := grpcConnImServer("localhost:6005")
+
 	lis, err := net.Listen("tcp", tcpAddr)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	s := grpc.NewServer()
 
-	grpcMessage.RegisterMessageServer(s, &easynoteGrpc.Message{})
+	grpcPb.RegisterMessageServer(s, &easynoteGrpc.Message{
+		ClientConn: clientConn,
+	})
+	protocolClient.RegisterRpcServer(s, &easynoteGrpc.Rpc{
+		ClientConn: clientConn,
+	})
 	// Register reflection service on gRPC server.
 	reflection.Register(s)
 	if err := s.Serve(lis); err != nil {
@@ -35,7 +53,7 @@ func grpcServerRegister(tcpAddr string) {
 }
 
 func main() {
-
+	log.SetFlags(log.Lshortfile | log.LstdFlags)
 	go grpcServerRegister("localhost:6006")
 
 	e := echo.New()
@@ -48,8 +66,8 @@ func main() {
 
 	e.GET("/", defaultServer)
 
-	fmt.Println("server run on port:80")
-	e.Run(standard.New(":80"))
+	fmt.Println("server run on port:8082")
+	e.Run(standard.New(":8082"))
 }
 
 // var (
