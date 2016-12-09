@@ -2,13 +2,12 @@ package grpc
 
 import (
 	context "golang.org/x/net/context"
-	"google.golang.org/grpc"
+	//"google.golang.org/grpc"
 	grpcPb "im/grpc/pb"
 	"log"
 )
 
 type Message struct {
-	ClientConn *grpc.ClientConn
 }
 
 func (s *Message) CreateMessage(context.Context, *grpcPb.CreateMessageRequest) (*grpcPb.CreateMessageReply, error) {

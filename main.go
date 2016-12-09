@@ -7,6 +7,7 @@ import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/engine/standard"
 	echomiddleware "github.com/labstack/echo/middleware"
+	netContext "golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	grpcPb "im/grpc/pb"
@@ -20,7 +21,7 @@ func defaultServer(c echo.Context) error {
 	return c.JSON(http.StatusOK, "a message from server")
 }
 
-func grpcConnImServer(tcpAddr string) *grpc.ClientConn {
+func grpcConnServer(tcpAddr string) *grpc.ClientConn {
 	//Set up a connection to the server.
 	conn, err := grpc.Dial(tcpAddr, grpc.WithInsecure())
 	if err != nil {
@@ -31,20 +32,22 @@ func grpcConnImServer(tcpAddr string) *grpc.ClientConn {
 
 func grpcServerRegister(tcpAddr string) {
 
-	clientConn := grpcConnImServer("localhost:6005")
+	accessServerConn := grpcConnServer("localhost:6004")
+	imServerConn := grpcConnServer("localhost:6005")
 
 	lis, err := net.Listen("tcp", tcpAddr)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
-	s := grpc.NewServer()
+	s := grpc.NewServer(grpc.UnaryInterceptor(func(ctx netContext.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (resp interface{}, err error) {
+		//log.Println("设置环境变量")
+		ctx = netContext.WithValue(ctx, "AccessServerConn", accessServerConn)
+		ctx = netContext.WithValue(ctx, "ImServerConn", imServerConn)
+		return handler(ctx, req)
+	}))
 
-	grpcPb.RegisterMessageServer(s, &easynoteGrpc.Message{
-		ClientConn: clientConn,
-	})
-	protocolClient.RegisterRpcServer(s, &easynoteGrpc.Rpc{
-		ClientConn: clientConn,
-	})
+	grpcPb.RegisterMessageServer(s, &easynoteGrpc.Message{})
+	protocolClient.RegisterRpcServer(s, &easynoteGrpc.Rpc{})
 	// Register reflection service on gRPC server.
 	reflection.Register(s)
 	if err := s.Serve(lis); err != nil {
