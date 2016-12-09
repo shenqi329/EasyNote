@@ -20,8 +20,8 @@ func (s *Rpc) Rpc(c context.Context, request *protocolClient.RpcRequest) (*proto
 	}
 	if request.MessageType == grpcPb.MessageTypeCreateSessionRequest {
 
+		//远程调用im逻辑服务器
 		sessionClient := grpcPb.NewSessionClient(s.ClientConn)
-
 		protoMessage := grpcPb.Factory((grpcPb.MessageType)(request.MessageType))
 
 		err := proto.Unmarshal(request.ProtoBuf, protoMessage)
