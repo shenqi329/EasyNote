@@ -1,6 +1,7 @@
 package grpc
 
 import (
+	easynoteError "easynote/error"
 	"github.com/golang/protobuf/proto"
 	context "golang.org/x/net/context"
 	"google.golang.org/grpc"
@@ -21,6 +22,8 @@ func (r *Rpc) Rpc(ctx context.Context, request *protocolClient.RpcRequest) (*pro
 
 	rpcResponse := &protocolClient.RpcResponse{
 		Rid:    request.Rid,
+		Code:   easynoteError.CommonInternalServerError,
+		Desc:   easynoteError.ErrorCodeToText(easynoteError.CommonInternalServerError),
 		ConnId: request.ConnId,
 	}
 	if request.MessageType == grpcPb.MessageTypeCreateSessionRequest {
@@ -45,6 +48,7 @@ func (r *Rpc) Rpc(ctx context.Context, request *protocolClient.RpcRequest) (*pro
 		log.Println(reply.String())
 		log.Println(request.ConnId)
 		protoBuf, err := proto.Marshal(reply)
+		log.Println(protoBuf)
 		if err != nil {
 			log.Println(err.Error())
 			return rpcResponse, nil
