@@ -5,22 +5,21 @@ import (
 	"github.com/golang/protobuf/proto"
 	context "golang.org/x/net/context"
 	"google.golang.org/grpc"
-	grpcPb "im/grpc/pb"
-	protocolClient "im/protocol/client"
+	grpcPb "im/logicserver/grpc/pb"
 	"log"
 )
 
 type Rpc struct {
 }
 
-func (r *Rpc) Rpc(ctx context.Context, request *protocolClient.RpcRequest) (*protocolClient.RpcResponse, error) {
+func (r *Rpc) Rpc(ctx context.Context, request *grpcPb.RpcRequest) (*grpcPb.RpcResponse, error) {
 
 	accessServerConn := ctx.Value("AccessServerConn").(*grpc.ClientConn)
 	imServerConn := ctx.Value("ImServerConn").(*grpc.ClientConn)
 
 	accessServerConn = accessServerConn
 
-	rpcResponse := &protocolClient.RpcResponse{
+	rpcResponse := &grpcPb.RpcResponse{
 		Rid:    request.Rid,
 		Code:   easynoteError.CommonInternalServerError,
 		Desc:   easynoteError.ErrorCodeToText(easynoteError.CommonInternalServerError),
@@ -53,9 +52,9 @@ func (r *Rpc) Rpc(ctx context.Context, request *protocolClient.RpcRequest) (*pro
 			log.Println(err.Error())
 			return rpcResponse, nil
 		}
-		rpcResponse = &protocolClient.RpcResponse{
+		rpcResponse = &grpcPb.RpcResponse{
 			Rid:         request.GetRid(),
-			MessageType: grpcPb.MessageTypeCreateSessionReply,
+			MessageType: grpcPb.MessageTypeCreateSessionResponse,
 			ProtoBuf:    protoBuf,
 			ConnId:      request.ConnId,
 		}

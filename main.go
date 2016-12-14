@@ -10,8 +10,7 @@ import (
 	netContext "golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
-	grpcPb "im/grpc/pb"
-	protocolClient "im/protocol/client"
+	grpcPb "im/logicserver/grpc/pb"
 	"log"
 	"net"
 	"net/http"
@@ -46,8 +45,8 @@ func grpcServerRegister(tcpAddr string) {
 		return handler(ctx, req)
 	}))
 
-	grpcPb.RegisterMessageServer(s, &easynoteGrpc.Message{})
-	protocolClient.RegisterRpcServer(s, &easynoteGrpc.Rpc{})
+	grpcPb.RegisterSessionServer(s, &easynoteGrpc.Sesion{})
+	grpcPb.RegisterRpcServer(s, &easynoteGrpc.Rpc{})
 	// Register reflection service on gRPC server.
 	reflection.Register(s)
 	if err := s.Serve(lis); err != nil {
