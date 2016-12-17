@@ -41,12 +41,18 @@ func grpcServerRegister(tcpAddr string) {
 	s := grpc.NewServer(grpc.UnaryInterceptor(func(ctx netContext.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (resp interface{}, err error) {
 		//log.Println("设置环境变量")
 		ctx = netContext.WithValue(ctx, "AccessServerConn", accessServerConn)
-		ctx = netContext.WithValue(ctx, "ImServerConn", imServerConn)
+		ctx = netContext.WithValue(ctx, "LogicServerConn", imServerConn)
 		return handler(ctx, req)
 	}))
 
-	grpcPb.RegisterSessionServer(s, &easynoteGrpc.Sesion{})
-	grpcPb.RegisterRpcServer(s, &easynoteGrpc.Rpc{})
+	//grpcPb.RegisterSessionServer(s, &easynoteGrpc.Sesion{})
+
+	rpc := &easynoteGrpc.Rpc{}
+	rpc.AddHandleFunc(grpcPb.MessageTypeCreateSessionRequest, grpcPb.MessageTypeCreateMessageResponse, easynoteGrpc.CreateSession)
+	rpc.AddHandleFunc(grpcPb.MessageTypeAddSessionUsersRequest, grpcPb.MessageTypeAddSessionUsersResponse, easynoteGrpc.AddSessionUsers)
+	rpc.AddHandleFunc(grpcPb.MessageTypeDeleteSessionUsersRequest, grpcPb.MessageTypeDeleteSessionUsersResponse, easynoteGrpc.DeleteSessionUsers)
+	grpcPb.RegisterRpcServer(s, rpc)
+
 	// Register reflection service on gRPC server.
 	reflection.Register(s)
 	if err := s.Serve(lis); err != nil {
