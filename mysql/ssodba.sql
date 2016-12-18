@@ -37,16 +37,6 @@ CREATE TABLE `t_token` (
   foreign key (`t_token_user_id`) references t_user(t_user_id) on delete cascade on update cascade
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
 
-drop table `t_email_verify`;
-CREATE TABLE `t_email_verify` (
-  `t_email_verify_id` 			bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `t_email_verify_username`		varchar(100) NOT NULL COMMENT '被验证的用户名',
-  `t_email_verify_email`		varchar(100) NOT NULL COMMENT '被验证的邮箱',
-  `t_email_verify_code`			varchar(10) NOT NULL COMMENT '验证码',
-  `t_email_verify_expired_time`	datetime NOT NULL  DEFAULT CURRENT_TIMESTAMP COMMENT '过期时间',
-  PRIMARY KEY (`t_email_verify_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='验证码表';
-
 drop table `t_verify`;
 create table `t_verify`(
   `t_verify_id` 			bigint(20) 	NOT NULL AUTO_INCREMENT COMMENT '主键',

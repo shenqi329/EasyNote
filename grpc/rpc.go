@@ -55,6 +55,10 @@ func (r *Rpc) Rpc(ctx context.Context, request *grpcPb.RpcRequest) (*grpcPb.RpcR
 	}
 
 	protoMessage := grpcPb.Factory((grpcPb.MessageType)(request.MessageType))
+	if protoMessage == nil {
+		log.Println("未知消息类型")
+		return rpcResponse, nil
+	}
 	log.Print(protoMessage.String())
 	err := proto.Unmarshal(request.ProtoBuf, protoMessage)
 	if err != nil {
@@ -85,7 +89,7 @@ func (r *Rpc) Rpc(ctx context.Context, request *grpcPb.RpcRequest) (*grpcPb.RpcR
 		Rid:         request.GetRid(),
 		Code:        easynoteError.CommonSuccess,
 		Desc:        easynoteError.ErrorCodeToText(easynoteError.CommonSuccess),
-		MessageType: (int32)(handleFuncInfo.responseType),
+		MessageType: (uint32)(handleFuncInfo.responseType),
 		ProtoBuf:    protoBuf,
 		ConnId:      request.RpcInfo.ConnId,
 	}

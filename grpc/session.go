@@ -31,11 +31,14 @@ import (
 // }
 
 func CreateSession(ctx context.Context, message proto.Message) (proto.Message, error) {
+
 	log.Println("creteSession")
-
 	rpcInfo := ctx.Value(key.RpcInfo).(*grpcPb.RpcInfo)
+	request, ok := message.(*grpcPb.CreateSessionRequest)
+	if !ok {
+		return nil, nil
+	}
 
-	request := message.(*grpcPb.CreateSessionRequest)
 	logicServerConn := ctx.Value(key.LogicServerConn).(*grpc.ClientConn)
 	sessionClient := grpcPb.NewSessionClient(logicServerConn)
 
@@ -51,6 +54,19 @@ func DeleteSessionUsers(ctx context.Context, message proto.Message) (proto.Messa
 }
 
 func AddSessionUsers(ctx context.Context, message proto.Message) (proto.Message, error) {
+
 	log.Println("AddUsers")
-	return nil, nil
+	rpcInfo := ctx.Value(key.RpcInfo).(*grpcPb.RpcInfo)
+	request, ok := message.(*grpcPb.AddSessionUsersRequest)
+	if !ok {
+		return nil, nil
+	}
+
+	logicServerConn := ctx.Value(key.LogicServerConn).(*grpc.ClientConn)
+	sessionClient := grpcPb.NewSessionClient(logicServerConn)
+
+	request.RpcInfo = rpcInfo
+	response, err := sessionClient.AddUsers(context.Background(), request)
+
+	return response, err
 }
