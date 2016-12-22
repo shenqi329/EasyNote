@@ -66,7 +66,7 @@ func AddSessionUsers(ctx context.Context, message proto.Message) (proto.Message,
 	sessionClient := grpcPb.NewSessionClient(logicServerConn)
 
 	request.RpcInfo = rpcInfo
-	response, err := sessionClient.AddUsers(context.Background(), request)
+	response, err := sessionClient.AddSessionUsers(context.Background(), request)
 
 	return response, err
 }
