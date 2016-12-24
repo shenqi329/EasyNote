@@ -17,11 +17,11 @@ type HandleFuncInfo struct {
 	responseType grpcPb.MessageType
 }
 
-type Rpc struct {
+type Forward struct {
 	handleFuncMap map[grpcPb.MessageType]*HandleFuncInfo
 }
 
-func (r *Rpc) AddHandleFunc(messageType grpcPb.MessageType, responseType grpcPb.MessageType, handle HandleFunc) {
+func (r *Forward) AddHandleFunc(messageType grpcPb.MessageType, responseType grpcPb.MessageType, handle HandleFunc) {
 	if r.handleFuncMap == nil {
 		r.handleFuncMap = make(map[grpcPb.MessageType]*HandleFuncInfo)
 	}
@@ -31,10 +31,9 @@ func (r *Rpc) AddHandleFunc(messageType grpcPb.MessageType, responseType grpcPb.
 	}
 }
 
-func (r *Rpc) Rpc(ctx context.Context, request *grpcPb.RpcRequest) (*grpcPb.RpcResponse, error) {
+func (r *Forward) ForwardTLP(ctx context.Context, request *grpcPb.ForwardTLPRequest) (*grpcPb.ForwardTLPResponse, error) {
 
-	rpcResponse := &grpcPb.RpcResponse{
-		Rid:    request.Rid,
+	rpcResponse := &grpcPb.ForwardTLPResponse{
 		Code:   easynoteError.CommonInternalServerError,
 		Desc:   easynoteError.ErrorCodeToText(easynoteError.CommonInternalServerError),
 		ConnId: request.RpcInfo.ConnId,
@@ -85,8 +84,7 @@ func (r *Rpc) Rpc(ctx context.Context, request *grpcPb.RpcRequest) (*grpcPb.RpcR
 		return rpcResponse, nil
 	}
 
-	rpcResponse = &grpcPb.RpcResponse{
-		Rid:         request.GetRid(),
+	rpcResponse = &grpcPb.ForwardTLPResponse{
 		Code:        easynoteError.CommonSuccess,
 		Desc:        easynoteError.ErrorCodeToText(easynoteError.CommonSuccess),
 		MessageType: (uint32)(handleFuncInfo.responseType),
@@ -94,41 +92,4 @@ func (r *Rpc) Rpc(ctx context.Context, request *grpcPb.RpcRequest) (*grpcPb.RpcR
 		ConnId:      request.RpcInfo.ConnId,
 	}
 	return rpcResponse, nil
-
-	// if request.MessageType == grpcPb.MessageTypeCreateSessionRequest {
-
-	// 	//远程调用im逻辑服务器
-	// 	sessionClient := grpcPb.NewSessionClient(imServerConn)
-	// 	protoMessage := grpcPb.Factory((grpcPb.MessageType)(request.MessageType))
-
-	// 	err := proto.Unmarshal(request.ProtoBuf, protoMessage)
-
-	// 	if err != nil {
-	// 		log.Println(err.Error())
-	// 		return rpcResponse, nil
-	// 	}
-	// 	log.Println(protoMessage.String())
-
-	// 	reply, err := sessionClient.CreateSession(context.Background(), protoMessage.(*grpcPb.CreateSessionRequest))
-	// 	if err != nil {
-	// 		log.Println(err.Error())
-	// 		return rpcResponse, nil
-	// 	}
-	// 	log.Println(reply.String())
-	// 	log.Println(request.ConnId)
-	// 	protoBuf, err := proto.Marshal(reply)
-	// 	log.Println(protoBuf)
-	// 	if err != nil {
-	// 		log.Println(err.Error())
-	// 		return rpcResponse, nil
-	// 	}
-	// 	rpcResponse = &grpcPb.RpcResponse{
-	// 		Rid:         request.GetRid(),
-	// 		MessageType: grpcPb.MessageTypeCreateSessionResponse,
-	// 		ProtoBuf:    protoBuf,
-	// 		ConnId:      request.ConnId,
-	// 	}
-	// 	return rpcResponse, nil
-	// }
-	//return rpcResponse, nil
 }

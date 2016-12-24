@@ -47,11 +47,11 @@ func grpcServerRegister(tcpAddr string) {
 
 	//grpcPb.RegisterSessionServer(s, &easynoteGrpc.Sesion{})
 
-	rpc := &easynoteGrpc.Rpc{}
-	rpc.AddHandleFunc(grpcPb.MessageTypeCreateSessionRequest, grpcPb.MessageTypeCreateMessageResponse, easynoteGrpc.CreateSession)
-	rpc.AddHandleFunc(grpcPb.MessageTypeAddSessionUsersRequest, grpcPb.MessageTypeAddSessionUsersResponse, easynoteGrpc.AddSessionUsers)
-	rpc.AddHandleFunc(grpcPb.MessageTypeDeleteSessionUsersRequest, grpcPb.MessageTypeDeleteSessionUsersResponse, easynoteGrpc.DeleteSessionUsers)
-	grpcPb.RegisterRpcServer(s, rpc)
+	forward := &easynoteGrpc.Forward{}
+	forward.AddHandleFunc(grpcPb.MessageTypeCreateSessionRequest, grpcPb.MessageTypeCreateSessionResponse, easynoteGrpc.CreateSession)
+	forward.AddHandleFunc(grpcPb.MessageTypeAddSessionUsersRequest, grpcPb.MessageTypeAddSessionUsersResponse, easynoteGrpc.AddSessionUsers)
+	forward.AddHandleFunc(grpcPb.MessageTypeDeleteSessionUsersRequest, grpcPb.MessageTypeDeleteSessionUsersResponse, easynoteGrpc.DeleteSessionUsers)
+	grpcPb.RegisterForwardToLogicServer(s, forward)
 
 	// Register reflection service on gRPC server.
 	reflection.Register(s)
