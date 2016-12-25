@@ -70,6 +70,14 @@ func (r *Forward) ForwardTLP(ctx context.Context, request *grpcPb.ForwardTLPRequ
 		log.Println(err.Error())
 		return rpcResponse, nil
 	}
+	if handleFuncInfo.responseType == 0 {
+		rpcResponse = &grpcPb.ForwardTLPResponse{
+			Code:        easynoteError.CommonSuccess,
+			Desc:        easynoteError.ErrorCodeToText(easynoteError.CommonSuccess),
+			MessageType: (uint32)(handleFuncInfo.responseType),
+		}
+		return rpcResponse, nil
+	}
 	if protoReply == nil {
 		return rpcResponse, nil
 	}
